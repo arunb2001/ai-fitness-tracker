@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: gateway-service
+
+  # all the remaining configs has been shifted to
+  # configserver/src/main/resources/config/user-service.yml
+
+  config:
+    import: optional:configserver:http://localhost:8888

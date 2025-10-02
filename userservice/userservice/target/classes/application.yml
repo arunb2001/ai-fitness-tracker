@@ -1,0 +1,55 @@
+spring:
+  application:
+    name: user-service
+
+  # all the remaining configs has been shifted to
+  # configserver/src/main/resources/config/user-service.yml
+
+  config:
+    import: optional:configserver:http://localhost:8888
+
+
+
+
+
+#  cloud:
+#    inetutils:
+#      ignore-hostname: true         # do not use the OS hostname
+#      preferred-networks: 192.168   # pick an address from this subnet
+#
+#  # connection details to connect app to DB
+#  datasource:
+#    # url format: <protocol>:<db_type>://localhost:<port>/<db_name>
+#    url: jdbc:postgresql://localhost:5432/fitness-micro-user
+#    username: postgres
+#    password: admin
+#
+#  # If using application.properties instead of application.yml
+#  # spring.datasource.url=
+#  # spring.datasource.username=
+#  # ...
+#
+#  # JPA-related properties
+#  jpa:
+#    hibernate:
+#      # whenever an entity is changed, app will auto-update the DB
+#      ddl-auto: update
+#    database-platform: org.hibernate.dialect.PostgreSQLDialect
+#
+##To register with Eureka service registry
+#eureka:
+#  client:
+#    serviceUrl:
+#      defaultZone: http://localhost:8761/eureka/
+#
+#  # Tell eureka to discover/connect clients using IP addresses only
+#  instance:
+#    prefer-ip-address: true
+#    ip-address: 127.0.0.1      # force the IP explicitly
+#    hostname: 127.0.0.1          # overrides the new WSL hostname
+#
+#
+## make the user service listen to port 8081 instead of 8080 (default)
+#server:
+#  port: 8081
+
