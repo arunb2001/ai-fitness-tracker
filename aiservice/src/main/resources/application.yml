@@ -1,0 +1,63 @@
+spring:
+  application:
+    name: ai-service
+
+  # all the remaining configs has been shifted to
+  # configserver/src/main/resources/config/user-service.yml
+
+  config:
+    import: optional:configserver:http://localhost:8888
+
+
+
+
+
+
+
+
+#  cloud:
+#    inetutils:
+#      ignore-hostname: true         # do not use the OS hostname
+#      preferred-networks: 192.168   # pick an address from this subnet
+#
+#  data:
+#    mongodb:
+#      uri: mongodb://localhost:27017/airecommendationfitness
+#      database: airecommendationfitness
+#
+#
+#  # connection details to kafka messaging queue
+#  kafka:
+#    bootstrap-servers: localhost:9092 # IP address and port of kafka server
+#    consumer:                         # ai service receives message from kafka (consumer)
+#      group-id: activity-processor-group
+#      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+#      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+#      properties:
+#        spring.json.use.type.headers: false
+#        spring.json.value.default.type: com.fitness.aiservice.model.Activity
+#        spring.json.trusted.packages: "*"
+#
+#eureka:
+#  client:
+#    serviceUrl:
+#      defaultZone: http://localhost:8761/eureka/
+#  instance:
+#    prefer-ip-address: true
+#    ip-address: 127.0.0.1      # force the IP explicitly
+#    hostname: 127.0.0.1          # overrides the new WSL hostname
+#
+## name of the kafka topic to receive the activity JSON from
+#kafka:
+#  topic:
+#    name: activity-events
+#
+##Gemini API connection details. The URL and key can be found in Run Configurations -> AiServiceApplication
+## -> environment variables -> GEMINI_URL=  ; GEMINI_KEY=
+#gemini:
+#  api:
+#    url: ${GEMINI_URL}
+#    key: ${GEMINI_KEY}
+#
+#server:
+#  port: 8083

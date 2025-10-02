@@ -1,0 +1,42 @@
+spring:
+
+  cloud:
+    inetutils:
+      ignore-hostname: true         # do not use the OS hostname
+      preferred-networks: 192.168   # pick an address from this subnet
+
+  # add mongodb connection details
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017/aiactivityfitness
+      database: aiactivityfitness
+
+  # connection details to kafka messaging queue
+  kafka:
+    bootstrap-servers: localhost:9092 # IP address and port of kafka server
+    producer:                         # tells that this service is a producer
+
+      # how to send a message to kafka (format of the key-value pair)
+      # we send activity object to aiservice as key-value pair with key as the ID
+      # of the user doing the activity and value as the Activity object in JSON format
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+
+# name of the kafka topic to send the activity JSON to
+kafka:
+  topic:
+    name: activity-events
+
+#To register with Eureka service registry
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    prefer-ip-address: true
+    ip-address: 127.0.0.1      # force the IP explicitly
+    hostname: 127.0.0.1          # overrides the new WSL hostname
+
+# make the server listen to port 8082 instead of 8080 (default)
+server:
+  port: 8082

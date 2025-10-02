@@ -1,0 +1,38 @@
+#To register with Eureka service registry
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+
+spring:
+  # All OAuth2 details are written here
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          jwk-set-uri: http://localhost:8181/realms/fitness-app/protocol/openid-connect/certs
+
+
+# All routing configurations/conditions/destinations are written here
+  cloud:
+    gateway:
+      server:
+        webflux:
+          routes:
+            - id: user-service
+              uri: lb://USER-SERVICE  # routing destination
+              predicates:             # routing conditions
+                - Path=/api/users/**
+
+            - id: activity-service
+              uri: lb://ACTIVITY-SERVICE
+              predicates:
+                - Path=/api/activities/**
+
+            - id: ai-service
+              uri: lb://AI-SERVICE
+              predicates:
+                - Path=/api/recommendations/**
+
+server:
+  port: 8080

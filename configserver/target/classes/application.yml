@@ -1,0 +1,17 @@
+spring:
+  application:
+    name: configserver
+  profiles:
+    active: native
+
+  # describes that config files of other services will be in
+  # config folder
+  cloud:
+    config:
+      server:
+        native:
+          search-location: classpath:/config
+
+
+server:
+  port: 8888
